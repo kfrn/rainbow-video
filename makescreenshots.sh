@@ -10,8 +10,8 @@ filename="${filename%%.*}"
 # Get duration of video in seconds; set number of frame captures ($divisor)
 duration=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 $input_file)
 echo "Video length in seconds:" $duration
-divisor=71 # To make 72 frame captures
-# divisor=5 # Will make 6 frame captures
+# divisor=71 # To make 72 frame captures
+divisor=5 # Will make 6 frame captures
 
 # Set interval (in seconds) and time of first screengrab ($seek_time)
 interval=$(echo "scale=0 ; $duration / $divisor" | bc)
@@ -24,4 +24,7 @@ echo "First frame capture will be taken at:" $seek_time
 output_folder=output-$filename
 mkdir $output_folder
 echo "Frame captures will be saved into subdirectory" $output_folder
-ffmpeg -i $input_file -ss $seek_time -r 1/$interval ./$output_folder/$filename_screengrab%02d.png -hide_banner
+ffmpeg -ss $seek_time -i $input_file -r 1/$interval ./$output_folder/"$filename"_screencap_%02d.png -hide_banner
+
+# Make basic composite image
+convert -append "$output_folder"/*.png "$output_folder"/"$filename"_composite.jpg
