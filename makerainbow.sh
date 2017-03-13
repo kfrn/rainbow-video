@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-# Assign variable name to first argument
-input_file=$1
-
-filename=$(basename "$input_file") # Gets rid of path of input file
-filename="${filename%%.*}" # Gets just filename
+input_file=$1 # Assign variable name to first argument
+filename=$(basename "$input_file" | sed 's/\.[^.]*$//') # Gets rid of path of input file
+# name=$(basename "$orig_name" | sed 's/\.[^.]*$//')
+# filename="${filename%%.*}" # Gets just filename
 clean_filename=`python3 ./fixfilename.py "$filename"` # Gets rid of spaces, brackets, etc
 echo "Original filename was" $filename "and clean filename is" $clean_filename
 
@@ -41,19 +40,19 @@ fi
 files=$(ls ./$output_folder/*.png)
 # Run Python script that orders image files by their dominant hue
 echo "Now crunching the numbers. Stand by ..."
-colour_order=`python3 ./getdominantcolour.py $files`
+colour_order=`python3 ./sortcolour.py $files`
 
-# TODO?: use array directly in imagemagick command rather than making text files
+# TODO?: use array directly in imagemagick command rather than making a text file
 $(echo $colour_order > "$output_folder"/array.txt)
 sed -i 's/\[//; s/]//' "$output_folder"/array.txt
 
 # Make 6x12 composite image
-montage @"$output_folder"/array.txt -tile 6x12 -geometry +0+0 "$output_folder"/"$clean_filename"_montage_fullsize_sorted.jpg
-montage "$output_folder"/*.png -tile 6x12 -geometry +0+0 "$output_folder"/"$clean_filename"_montage_fullsize_orig.jpg
-convert "$output_folder"/"$clean_filename"_montage_fullsize_sorted.jpg -resize 750 "$output_folder"/"$clean_filename"_montage_750w.jpg
+montage @"$output_folder"/array.txt -tile 6x12 -geometry +0+0 "$output_folder"/"$clean_filename"_montage_fullsize.jpg
+# montage "$output_folder"/*.png -tile 6x12 -geometry +0+0 "$output_folder"/"$clean_filename"_montage_fullsize_orig.jpg
+convert "$output_folder"/"$clean_filename"_montage_fullsize.jpg -resize 750 "$output_folder"/"$clean_filename"_montage_750w.jpg
 echo "Composite images created."
 
 # Remove the individual frame captures
 rm ./$output_folder/*.png
 rm ./$output_folder/*.txt
-echo "Individual frame captures and text files deleted."
+echo "Individual frame captures and text file deleted."
