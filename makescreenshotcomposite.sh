@@ -12,8 +12,8 @@ echo $clean_filename
 # Get duration of video in seconds; set number of frame captures ($divisor)
 duration=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$input_file")
 echo "Video length in seconds:" $duration
-divisor=71 # To make 72 frame captures
-# divisor=5 # to make 6. for testing
+# divisor=71 # To make 72 frame captures
+divisor=5 # to make 6. for testing
 
 # Set interval (in seconds) and time of first screengrab ($seek_time)
 interval=$(echo "scale=0 ; $duration / $divisor" | bc)
@@ -39,10 +39,10 @@ if [[ -f ./$output_folder/"$clean_filename"_screencap_73.png ]]; then
 fi
 
 files=$(ls ./$output_folder/*.png)
-# echo $files
 
-# Get dominant colour for each image here. Currently just printing RGB values
-python3 ./getdominantcolour.py $files
+# Run Python script that orders image files by their primary hue
+colour_order=`python3 ./getdominantcolour.py $files`
+echo "files in colour order:" $colour_order
 
 # Make 6x12 composite image
 montage "$output_folder"/*.png -tile 6x12 -geometry +0+0 "$output_folder"/"$clean_filename"_montage_fullsize.jpg
