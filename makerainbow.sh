@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
 input_file=$1 # Assign variable name to first argument
-filename=$(basename "$input_file" | sed 's/\.[^.]*$//') # Gets rid of path of input file
-# name=$(basename "$orig_name" | sed 's/\.[^.]*$//')
-# filename="${filename%%.*}" # Gets just filename
+filename=$(basename "$input_file" | sed 's/\.[^.]*$//') # Gets rid of path and extension of input file
 clean_filename=`python3 ./fixfilename.py "$filename"` # Gets rid of spaces, brackets, etc
 echo "Original filename was" $filename "and clean filename is" $clean_filename
 
@@ -11,7 +9,6 @@ echo "Original filename was" $filename "and clean filename is" $clean_filename
 duration=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$input_file")
 echo "Video length in seconds:" $duration
 divisor=71 # To make 72 frame captures
-# divisor=5 # to make 6. for testing
 
 # Set interval (in seconds) and time of first screengrab ($seek_time)
 interval=$(echo "scale=0 ; $duration / $divisor" | bc)
@@ -48,7 +45,6 @@ sed -i 's/\[//; s/]//' "$output_folder"/array.txt
 
 # Make 6x12 composite image
 montage @"$output_folder"/array.txt -tile 6x12 -geometry +0+0 "$output_folder"/"$clean_filename"_montage_fullsize.jpg
-# montage "$output_folder"/*.png -tile 6x12 -geometry +0+0 "$output_folder"/"$clean_filename"_montage_fullsize_orig.jpg
 convert "$output_folder"/"$clean_filename"_montage_fullsize.jpg -resize 750 "$output_folder"/"$clean_filename"_montage_750w.jpg
 echo "Composite images created."
 
