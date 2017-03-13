@@ -42,3 +42,6 @@ test-videos
 # Output folders
 output
 output*
+
+# Temp files
+temp*
