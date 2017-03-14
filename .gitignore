@@ -45,3 +45,6 @@ output*
 
 # Temp files
 temp*
+
+# Average images
+images/no/

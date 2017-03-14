@@ -1,7 +1,10 @@
 ## rainbow-video
 
-This script akes a video file and outputs a mosaic of frame captures which have been ordered according to hue. This composite image is output into a folder named after the video file.  
+This script takes a video file and outputs a mosaic of frame captures which have been ordered according to hue.   
+
 How cool it looks depends on the characteristics of the input file. The more saturated and varied colours, the better!
+
+The composite image is output into a folder named after the video file.
 
 #### Dependencies
 * [ffmpeg](https://ffmpeg.org/)
@@ -10,13 +13,15 @@ How cool it looks depends on the characteristics of the input file. The more sat
 * [Colour Thief](https://github.com/fengsp/color-thief-py)
 
 #### To use:
-* Mke file executable: `chmod +x makerainbow.sh`  
+* Make file executable: `chmod +x makerainbow.sh`  
 * Run script: `./makerainbow.sh input_video`
 
 #### Example
 
-英雄 aka _Hero_ (Zhang Yimou, CN 2002)
+英雄 aka _Hero_ (Zhang Yimou, CN 2002):    
 ![Hero (2002) image mosaic](./images/hero-ying-xiong-2002_montage_750w.jpg "Hero (2002) image mosaic")
+
+See more examples [here](./examples.md).
 
 #### ⚠ Caveats & to-dos
 * Script should have more error handling
