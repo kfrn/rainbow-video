@@ -10,7 +10,7 @@ The composite image is output into a folder named after the video file.
 * [ffmpeg](https://ffmpeg.org/)
 * [imagemagick](https://www.imagemagick.org/script/index.php)
 * [python-slugify](https://github.com/un33k/python-slugify)
-* [Colour Thief](https://github.com/fengsp/color-thief-py)
+* [Colour Thief](https://github.com/fengsp/color-thief-py) (this is really the engine of the script, super cool stuff)
 
 #### To use:
 * Make file executable: `chmod +x makerainbow.sh`  
@@ -24,5 +24,5 @@ The composite image is output into a folder named after the video file.
 See more examples [here](./examples.md).
 
 #### ⚠ Caveats & to-dos
-* Script should have more error handling
+* Script should have more error handling! Beware!
 * Blend of Bash and Python - refactor to Python at some stage.

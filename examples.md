@@ -1,9 +1,11 @@
 ### rainbow-video: examples
 
 The aesthetic appeal of the image mosaic really depends on the range and intensity of colours in the input video.  
-Many films don't have a hugely varied palette, so the rainbow effect in the output is weak or vague.
+Some films don't have a hugely varied palette, so the rainbow effect in the output is weak or vague.
 
 Here are some examples of films that had a pleasing result:
+
+From Twitter comes [Daniel Pett](https://twitter.com/DEJPett/)'s great example, using an item from the collection of the British Museum. Have a look [here](https://twitter.com/DEJPett/status/842072486774730754)!
 
 _Der Student von Prag_ (Stellan Rye & Paul Wegener, DE 1913):    
 
@@ -12,6 +14,8 @@ _Der Student von Prag_ (Stellan Rye & Paul Wegener, DE 1913):
 _Purple Rain_ (Albert Magnoli, US 1984):
 
 ![Purple Rain (1984) image mosaic](./images/purple-rain-1984_montage_750w.jpg "Purple Rain (1984) image mosaic")
+
+(For more Prince, click [here](./purple_splendour.md))
 
 _Sedmikrásky_ aka _Daisies_ (Věra Chytilová, CZ 1966):    
 
